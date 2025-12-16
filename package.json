@@ -1,137 +1,96 @@
 {
-  "name": "toolpad-project",
-  "version": "0.0.1",
+  "name": "@toolpad/core",
+  "version": "0.16.0",
+  "author": "MUI Team",
+  "description": "Dashboard framework powered by Material UI.",
+  "main": "./index.js",
+  "module": "./esm/index.js",
+  "keywords": [
+    "react",
+    "mui",
+    "toolpad",
+    "internal tools",
+    "crud",
+    "admin",
+    "dashboard"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/toolpad.git",
+    "directory": "packages/toolpad-core"
+  },
   "license": "MIT",
-  "description": "Components and APIs for building dashboards and internal tools",
-  "repository": "https://github.com/mui/toolpad.git",
-  "private": true,
-  "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "proptypes": "tsx ./scripts/generateProptypes.ts",
-    "install:codesandbox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 pnpm install",
-    "markdownlint": "markdownlint-cli2 \"**/*.md\"",
-    "prettier": "pretty-quick --ignore-path .eslintignore --branch master",
-    "prettier:all": "prettier --write . --ignore-path .eslintignore",
-    "dev": "dotenv cross-env FORCE_COLOR=1 lerna -- run dev --stream --parallel --ignore docs --ignore playground-*",
-    "docs:dev": "pnpm --filter docs dev",
-    "docs:build": "pnpm --filter docs build",
-    "docs:build:api:core": "tsx --tsconfig ./scripts/tsconfig.json ./scripts/docs/buildCoreApiDocs/index.ts",
-    "docs:build:api": "concurrently \"pnpm docs:build:api:core\"",
-    "docs:typescript:formatted": "tsx ./docs/scripts/formattedTSDemos",
-    "eslint": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx",
-    "jsonlint": "node ./scripts/jsonlint.mjs",
-    "release:build": "lerna run --ignore docs --stream build --concurrency 1",
-    "release:version": "lerna version --exact --no-changelog --no-push --no-git-tag-version",
-    "release:publish": "pnpm dedupe && pnpm release:build && pnpm publish --recursive --tag latest",
-    "release:changelog": "dotenv -- node ./scripts/releaseChangelog.mjs --repo toolpad",
-    "test:browser": "FORCE_COLOR=1 pnpm run -r test:browser",
-    "test:argos": "node ./scripts/pushArgos.mjs test/regressions/screenshots/chrome",
-    "test": "lerna run test --stream",
-    "check-types": "lerna run --concurrency 1 check-types",
-    "jsonSchemas": "tsx ./scripts/docs/generateJsonSchemas.ts",
-    "monorepo:update": "tsx ./scripts/updateMonorepo.ts",
-    "monorepo:canary": "tsx ./scripts/canaryMonorepo.ts",
-    "check-changes": "git add -A && git diff --exit-code --staged",
-    "clean": "pnpm -r exec rm -rf build dist"
+  "bugs": {
+    "url": "https://github.com/mui/toolpad/issues"
   },
-  "devDependencies": {
-    "@argos-ci/core": "3.2.0",
-    "@babel/cli": "7.28.0",
-    "@babel/core": "7.28.0",
-    "@babel/node": "7.28.0",
-    "@babel/plugin-transform-react-constant-elements": "7.27.1",
-    "@babel/plugin-transform-runtime": "7.28.0",
-    "@babel/preset-env": "7.28.0",
-    "@babel/preset-react": "7.27.1",
-    "@babel/preset-typescript": "7.27.1",
-    "@mui/internal-babel-plugin-resolve-imports": "2.0.5",
-    "@mui/internal-docs-utils": "2.0.1",
-    "@mui/internal-markdown": "2.0.7",
-    "@mui/internal-scripts": "2.0.10",
-    "@mui/monorepo": "github:mui/material-ui#3641a0b7b5c4506b7d44f3241580087b56482c74",
-    "@mui/x-charts": "^8.8.0",
-    "@next/eslint-plugin-next": "15.3.4",
-    "@playwright/test": "1.54.1",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "16.3.0",
-    "@testing-library/user-event": "14.6.1",
-    "@types/archiver": "6.0.3",
-    "@types/fs-extra": "11.0.4",
-    "@types/gtag.js": "0.0.20",
-    "@types/invariant": "2.2.37",
-    "@types/node": "^20.19.4",
-    "@types/yargs": "17.0.33",
-    "@typescript-eslint/eslint-plugin": "^8.35.1",
-    "@typescript-eslint/parser": "^8.35.1",
-    "@vitest/coverage-v8": "2.1.9",
-    "babel-plugin-react-remove-properties": "0.3.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "chalk": "5.4.1",
-    "concurrently": "9.2.0",
-    "css-mediaquery": "^0.1.2",
-    "danger": "^13.0.4",
-    "eslint": "8.57.1",
-    "eslint-config-airbnb": "19.0.4",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-import-resolver-webpack": "0.13.10",
-    "eslint-plugin-consistent-default-export-name": "^0.0.15",
-    "eslint-plugin-filenames": "1.3.2",
-    "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-material-ui": "workspace:*",
-    "eslint-plugin-mocha": "10.5.0",
-    "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-react-compiler": "latest",
-    "eslint-plugin-react-hooks": "5.2.0",
-    "eslint-plugin-testing-library": "^6.5.0",
-    "eslint-plugin-typescript-enum": "2.1.0",
-    "execa": "9.6.0",
-    "fast-glob": "^3.3.3",
-    "format-util": "1.0.5",
-    "fs-extra": "11.3.0",
-    "globby": "14.1.0",
-    "jsdom": "26.1.0",
-    "lerna": "8.2.3",
-    "markdownlint-cli2": "0.18.1",
-    "prettier": "3.6.2",
-    "pretty-quick": "4.2.2",
-    "react-docgen": "5.4.3",
-    "react-inspector": "6.0.2",
-    "regenerator-runtime": "0.14.1",
-    "remark": "15.0.1",
-    "rimraf": "6.0.1",
-    "typescript": "5.8.3",
-    "unist-util-visit": "5.0.0",
-    "vitest-browser-react": "^0.3.0",
-    "vitest-dom": "0.1.1",
-    "vitest-fail-on-console": "0.7.1"
-  },
+  "homepage": "https://github.com/mui/toolpad#readme",
   "dependencies": {
-    "@types/lodash": "4.17.20",
-    "@vitest/browser": "2.1.9",
-    "archiver": "7.0.1",
-    "cross-env": "7.0.3",
-    "dotenv-cli": "7.4.4",
-    "eslint-import-resolver-exports": "1.0.0-beta.5",
+    "@babel/runtime": "^7.27.6",
+    "@mui/utils": "^7.1.1",
+    "@mui/x-data-grid": "^8.5.0",
+    "@mui/x-date-pickers": "^8.5.0",
+    "client-only": "^0.0.1",
+    "dayjs": "1.11.13",
     "invariant": "2.2.4",
-    "lodash": "4.17.21",
-    "react-swipeable-views": "^0.14.0",
-    "semver": "7.7.2",
-    "tsup": "8.5.0",
-    "tsx": "4.20.3",
-    "vitest": "2.1.9",
-    "yargs": "17.7.2",
-    "zod": "3.25.76",
-    "zod-to-json-schema": "3.24.6"
+    "path-to-regexp": "6.3.0",
+    "prop-types": "15.8.1",
+    "@toolpad/utils": "0.16.0"
   },
-  "resolutions": {
-    "google-auth-library": "*",
-    "@types/node": "^20.19.4"
+  "peerDependencies": {
+    "@emotion/cache": "^11",
+    "@emotion/react": "^11",
+    "@mui/icons-material": "^7.0.0-beta || ^7.0.0",
+    "@mui/material": "^7.0.0-beta || ^7.0.0",
+    "@tanstack/react-router": "^1",
+    "next": "\^14 \|\| \^15 \|\| \^16",
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19",
+    "react-router": "^7"
   },
-  "packageManager": "pnpm@10.12.4",
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    },
+    "react-router": {
+      "optional": true
+    },
+    "@tanstack/react-router": {
+      "optional": true
+    }
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
   "engines": {
-    "node": ">=20",
-    "pnpm": "10.12.4"
-  }
+    "node": ">=14.0.0"
+  },
+  "private": false,
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      },
+      "import": {
+        "types": "./esm/index.d.ts",
+        "default": "./esm/index.js"
+      }
+    },
+    "./*": {
+      "require": {
+        "types": "./*/index.d.ts",
+        "default": "./*/index.js"
+      },
+      "import": {
+        "types": "./esm/*/index.d.ts",
+        "default": "./esm/*/index.js"
+      }
+    },
+    "./esm": null,
+    "./modern": null
+  },
+  "types": "./index.d.ts"
 }
